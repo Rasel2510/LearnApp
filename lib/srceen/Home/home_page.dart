@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:task/data/course_data.dart';
 import 'package:task/srceen/Search.dart';
 import 'package:task/widget/Catagory.dart';
+import 'package:task/widget/gride_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -145,20 +147,20 @@ class _HomePageState extends State<HomePage> {
             CategoryChips(),
             SizedBox(height: 20),
 
-            // Expanded(
-            //   child: GridView.builder(
-            //     itemCount: CardData.cardList.length,
-            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //       crossAxisCount: 2,
-            //       crossAxisSpacing: 12,
-            //       mainAxisSpacing: 12,
-            //       childAspectRatio: 0.7,
-            //     ),
-            //     itemBuilder: (context, index) {
-            //       return CardItem(card: CardData.cardList[index]);
-            //     },
-            //   ),
-            // ),
+            Expanded(
+              child: GridView.builder(
+                itemCount: CardData.cardList.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
+                  childAspectRatio: 0.7,
+                ),
+                itemBuilder: (context, index) {
+                  return CardItem(card: CardData.cardList[index]);
+                },
+              ),
+            ),
           ],
         ),
       ),

@@ -7,6 +7,5 @@ class AppImages {
   static const String bg5 = "assets/images/img5.png";
   static const String bg6 = "assets/images/img6.png";
 
-  // Teacher image
   static const String teacherJessica = "assets/images/jessica.png";
 }

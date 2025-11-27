@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:task/models/quiz_model.dart';
 import 'package:task/srceen/Home/home_page.dart';
 import 'package:task/srceen/Secend_src.dart';
+import 'package:task/srceen/profile.dart';
+import 'package:task/srceen/quize_src.dart';
 
 class BottonNev extends StatefulWidget {
   const BottonNev({super.key});
@@ -21,9 +24,10 @@ class _BottonNevState extends State<BottonNev> {
   final List<Widget> _pages = [
     const HomePage(),
     const SecendSrc(),
+    QuizScreen(quiz: QuizData.sampleQuizzes[0]),
+
     const Placeholder(),
-    const Placeholder(),
-    const Placeholder(),
+    const Profile(),
   ];
 
   @override

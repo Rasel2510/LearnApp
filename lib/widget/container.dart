@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomContainer extends StatelessWidget {
-  final String text;
-  const CustomContainer({super.key, required this.text});
+  final String? text;
+  const CustomContainer({super.key, this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class CustomContainer extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Text(text, style: const TextStyle(fontSize: 16)),
+        child: Text(text!, style: const TextStyle(fontSize: 16)),
       ),
     );
   }
