@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:task/data/course_data.dart';
 import 'package:task/srceen/Search.dart';
 import 'package:task/widget/Catagory.dart';
@@ -146,18 +147,19 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 20),
             CategoryChips(),
             SizedBox(height: 20),
-
             Expanded(
-              child: GridView.builder(
+              child: MasonryGridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 12,
+                crossAxisSpacing: 12,
                 itemCount: CardData.cardList.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 0.7,
-                ),
                 itemBuilder: (context, index) {
-                  return CardItem(card: CardData.cardList[index]);
+                  bool isBig = index % 2 == 0;
+
+                  return SizedBox(
+                    height: isBig ? 268 : 209,
+                    child: CardItem(card: CardData.cardList[index]),
+                  );
                 },
               ),
             ),

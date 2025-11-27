@@ -11,7 +11,43 @@ class CreateAccount extends StatefulWidget {
 }
 
 class _CreateAccountState extends State<CreateAccount> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+
+  void createAccount() {
+    String name = nameController.text.trim();
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+    String confirmPassword = confirmPasswordController.text.trim();
+
+    if (name.isEmpty ||
+        email.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("All fields are required")));
+      return;
+    }
+
+    if (password != confirmPassword) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Passwords do not match")));
+      return;
+    }
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => ProfileSetupScreen()),
+    );
+  }
+
   int selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,14 +156,17 @@ class _CreateAccountState extends State<CreateAccount> {
                     style: TextStyle(fontSize: 14, color: Color(0xFF737373)),
                   ),
                   SizedBox(height: 8),
-                  CustomTextField(hintText: 'Name'),
+                  CustomTextField(hintText: 'Name', controller: nameController),
                   SizedBox(height: 8),
                   Text(
                     'Email',
                     style: TextStyle(fontSize: 14, color: Color(0xFF737373)),
                   ),
                   SizedBox(height: 8),
-                  CustomTextField(hintText: 'Email'),
+                  CustomTextField(
+                    hintText: 'Email',
+                    controller: emailController,
+                  ),
                   SizedBox(height: 8),
                   Text(
                     'Password',
@@ -136,16 +175,18 @@ class _CreateAccountState extends State<CreateAccount> {
                   SizedBox(height: 8),
                   CustomTextField(
                     hintText: 'Password',
+                    controller: passwordController,
                     suffixIcon: Icon(Icons.visibility_off_outlined),
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'Conform Password',
+                    'Confirm Password',
                     style: TextStyle(fontSize: 14, color: Color(0xFF737373)),
                   ),
                   SizedBox(height: 8),
                   CustomTextField(
-                    hintText: 'Conform Password',
+                    hintText: 'Confirm Password',
+                    controller: confirmPasswordController,
                     suffixIcon: Icon(Icons.visibility_off_outlined),
                   ),
                   SizedBox(height: 8),
@@ -165,15 +206,9 @@ class _CreateAccountState extends State<CreateAccount> {
                   CustomElevatedButton(
                     text: "Create Account",
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProfileSetupScreen(),
-                        ),
-                      );
+                      createAccount();
                     },
                   ),
-
                   SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

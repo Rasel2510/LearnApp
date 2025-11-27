@@ -40,5 +40,17 @@ class CardData {
       teacherName: "Jessica Roy",
       teacherImage: AppImages.teacherJessica,
     ),
+    CardModel(
+      title: "Trigonometry Basic",
+      image: AppImages.bg3,
+      teacherName: "Jessica Roy",
+      teacherImage: AppImages.teacherJessica,
+    ),
+    CardModel(
+      title: "Geometry Advance",
+      image: AppImages.bg4,
+      teacherName: "Jessica Roy",
+      teacherImage: AppImages.teacherJessica,
+    ),
   ];
 }

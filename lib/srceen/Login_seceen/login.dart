@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:task/srceen/Login_seceen/create_account.dart';
+import 'package:task/srceen/Navigation/botton_nev.dart';
 import 'package:task/widget/Elevatedbutton.dart';
 import 'package:task/widget/Textformfild.dart';
 
@@ -11,6 +13,29 @@ class Login extends StatefulWidget {
 }
 
 class LoginState extends State<Login> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  void loginUser() {
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Email and Password cannot be empty")),
+      );
+      return;
+    }
+
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text("Login Successful")));
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => BottonNev()),
+    );
+  }
+
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -120,7 +145,10 @@ class LoginState extends State<Login> {
                     style: TextStyle(fontSize: 14, color: Color(0xFF737373)),
                   ),
                   SizedBox(height: 8),
-                  CustomTextField(hintText: 'Email'),
+                  CustomTextField(
+                    hintText: 'Email',
+                    controller: emailController,
+                  ),
                   SizedBox(height: 8),
                   Text(
                     'Password',
@@ -129,6 +157,7 @@ class LoginState extends State<Login> {
                   SizedBox(height: 8),
                   CustomTextField(
                     hintText: 'Password',
+                    controller: passwordController,
                     suffixIcon: Icon(Icons.visibility_off_outlined),
                   ),
                   SizedBox(height: 8),
@@ -145,7 +174,12 @@ class LoginState extends State<Login> {
                     ],
                   ),
                   SizedBox(height: 8),
-                  CustomElevatedButton(text: "Log in", onPressed: () {}),
+                  CustomElevatedButton(
+                    text: "Log in",
+                    onPressed: () {
+                      loginUser();
+                    },
+                  ),
                   SizedBox(height: 16),
                   CustomElevatedButton(
                     text: "Login With Google",
